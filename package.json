@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "dev_game": "live-server public/game --port=3344",
+    "dev_web": "live-server public/website --port=3345"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   "dependencies": {
     "express": "^4.18.1",
     "http": "^0.0.1-security",
+    "live-server": "^1.2.2",
     "path": "^0.12.7"
   }
 }
