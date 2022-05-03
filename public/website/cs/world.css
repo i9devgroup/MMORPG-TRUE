@@ -1,0 +1,45 @@
+@import url('http://fonts.cdnfonts.com/css/montserrat');
+
+*{
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+:root{
+    --fundo-menu-topo: #171a21;
+    --fundo-menu-topo-hover: #2b313f;
+    --letra-menu-topo: #c5c3c0;
+    --letra-menu-topo-hover: #ffffff;
+    --letra-button: #5c7e10;
+}
+
+.FundoMenu{
+    background-color: var(--fundo-menu-topo);
+}
+
+.TextoTopMenu{
+    color: var(--letra-menu-topo);
+    font-weight: bold;
+    height: 100%;
+    text-decoration: none;
+}
+
+.TextoTopMenu:hover{
+    color: var(--letra-menu-topo-hover);    
+    cursor: pointer;
+}
+
+.buttonMenuTop{
+    background-color: var(--letra-button);
+    color: var(--letra-menu-topo);
+    border: 0px;
+    height: 100%;
+    border-radius: 6px;
+    width: 50%;
+    font-weight: bold;
+}
+
+.buttonMenuTop:hover{
+    color: var(--letra-menu-topo-hover)
+}
