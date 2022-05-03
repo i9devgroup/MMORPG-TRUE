@@ -1,6 +1,7 @@
 import Loading from '/assets/js/scenes/Loading.js'
 import MainScene from '/assets/js/scenes/MainScene.js'
 
+
 const config = {
     title: 'MMORPG-TRUE',
     type: Phaser.AUTO,
@@ -30,7 +31,7 @@ const config = {
     },
     callbacks: {
         postBoot: () => {
-          // window.sizeChanged();
+          window.sizeChanged();
         },
     },
     dom: {
@@ -40,4 +41,28 @@ const config = {
   
   
 
-const game = new Phaser.Game(config);
+
+
+window.addEventListener('load', () => {
+
+  const game = new Phaser.Game(config);
+
+  game.input.activePointer;
+
+  window.sizeChanged = () => {
+    if (game.isBooted) {
+      setTimeout(() => {
+        game.scale.resize(window.innerWidth, window.innerHeight);
+  console.log(game)
+        game.canvas.setAttribute(
+          'style',
+          `display: block; width: ${window.innerWidth}px; height: ${window.innerHeight}px;`,
+        );
+
+      }, 100);
+    }
+  };
+  
+  window.onresize = () => window.sizeChanged();
+ 
+})
