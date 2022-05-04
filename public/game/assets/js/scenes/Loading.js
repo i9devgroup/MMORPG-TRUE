@@ -91,48 +91,15 @@ export default class Loading extends Phaser.Scene {
         });
 
 
-this.load.spritesheet("player-0", "assets/player/characters/characters-0.png", {
-frameWidth: 52,
-frameHeight: 72,
-});
 
-this.load.spritesheet("player-1", "assets/player/characters/characters-2.png", {
-    frameWidth: 52,
-    frameHeight: 72,
-});
-
-this.load.spritesheet("player-2", "assets/player/characters/characters-3.png", {
-    frameWidth: 52,
-    frameHeight: 72,
-});
-
-this.load.spritesheet("player-3", "assets/player/characters/characters-4.png", {
-    frameWidth: 52,
-    frameHeight: 72,
-});
-
-
-this.load.spritesheet("player-4", "assets/player/characters/characters-5.png", {
-    frameWidth: 52,
-    frameHeight: 72,
-});
-
-this.load.spritesheet("player-5", "assets/player/characters/characters-6.png", {
-    frameWidth: 52,
-    frameHeight: 72,
-});
-
-this.load.spritesheet("player-6", "assets/player/characters/characters-7.png", {
-    frameWidth: 52,
-    frameHeight: 72,
-});
-
-this.load.spritesheet("player-7", "assets/player/characters/characters-2.png", {
-    frameWidth: 52,
-    frameHeight: 72,
-});
-
-
+    for (let index = 0; index < 8; index++) {
+     
+        this.load.spritesheet("player-"+index+"", "assets/player/characters/characters-"+index+".png", {
+            frameWidth: 52,
+            frameHeight: 72,
+            });  
+        
+    }
 
 
 
