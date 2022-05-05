@@ -1,6 +1,6 @@
-import Loading from '/assets/js/scenes/Loading.js'
-import MainScene from '/assets/js/scenes/MainScene.js'
-import Login from '/assets/js/scenes/Login.js'
+import Loading from '../scenes/Loading.js'
+import MainScene from '../scenes/MainScene.js'
+import Login from '../scenes/Login.js'
 
 
 const config = {
@@ -54,7 +54,7 @@ window.addEventListener('load', () => {
     if (game.isBooted) {
       setTimeout(() => {
         game.scale.resize(window.innerWidth, window.innerHeight);
-  console.log(game)
+
         game.canvas.setAttribute(
           'style',
           `display: block; width: ${window.innerWidth}px; height: ${window.innerHeight}px;`,

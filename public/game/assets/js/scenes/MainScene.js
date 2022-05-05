@@ -1,9 +1,9 @@
-import Controlers from '/assets/js/controllers/controlers.js'
-import Resize_ui from '/assets/js/controllers/resize_ui.js'
-import Player from '/assets/js/states/player.js'
-import AnimationSprite from '/assets/js/states/AnimationSprite.js'
-import MiniMap from '/assets/js/UI/MiniMap.js'
-import GetPlayer from '/assets/js/controllers/GetPlayer.js'
+import Controlers from '../controllers/controlers.js'
+import Resize_ui from '../controllers/resize_ui.js'
+import Player from '../states/player.js'
+import AnimationSprite from '../states/AnimationSprite.js'
+import MiniMap from '../UI/MiniMap.js'
+import GetPlayer from '../controllers/GetPlayer.js'
 
 export default class MainScene extends Phaser.Scene {
     constructor(){

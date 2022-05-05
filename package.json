@@ -2,9 +2,11 @@
   "name": "mmorpg-true",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
+  "main": "./server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --delay 500ms server/index.js",
     "dev_game": "live-server public/game --port=3344",
     "dev_web": "live-server public/website --port=3345"
   },
@@ -20,10 +22,14 @@
   },
   "homepage": "https://github.com/i9devgroup/MMORPG-TRUE#readme",
   "dependencies": {
+    "@geckos.io/server": "^2.2.0",
+    "cors": "^2.8.5",
     "express": "^4.18.1",
     "http": "^0.0.1-security",
     "install": "^0.13.0",
     "live-server": "^1.2.2",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.16",
     "npm": "^8.8.0",
     "path": "^0.12.7",
     "phaser": "^3.55.2"

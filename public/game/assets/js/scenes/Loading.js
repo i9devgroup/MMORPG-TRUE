@@ -86,6 +86,7 @@ export default class Loading extends Phaser.Scene {
             percentText.destroy();
             clearTimeout(timer)
             assetText.destroy();
+
             
             GAME_ENGINE.scene.start('Login')   
         });

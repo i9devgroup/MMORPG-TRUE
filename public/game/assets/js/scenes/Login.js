@@ -10,17 +10,55 @@ export default class MainScene extends Phaser.Scene {
       this.load.image('tiles_desert', 'assets/maps/desert.png');
       this.load.tilemapTiledJSON('desert', 'assets/maps/desert.json');
 
+      var channel = geckos({ port: 6363 })
+            
+      channel.onConnect(function (error) {
+          if (error) {
+            console.error(error.message)
+          } else {
+            console.log("You're connected on MMORPG")
+          }
+
+          
+        })
+        
     }
 
     create(){
 
     loadMaps(this)
+    this.cameras.main.setBounds(0, 0, 1024, 2048);
+    this.cameras.main.setZoom(1);
+    let pos = 1;
+    var cam = this.cameras.main;
+  
+    cam.pan(4280, 300, 5000);
+    setInterval(() => {
+      var cam = this.cameras.main;
+      if (pos === 0)
+            {
+                
+              cam.pan(4280, 300, 5000);
+            
+                pos++
+
+            }else if (pos === 1)
+            {
+               
+              cam.pan(0, 300, 5000);
+                // cam.pan(0, 5000, 10000, 'Elastic');
+                // // cam.zoomTo(1, 3000);
+                pos = 0
+            }
+
+         
+    }, 5000);
 
 
     }
 
     update(time, deltaTime){
-
+      const cam = this.cameras.main;
   
     }
 

@@ -1,4 +1,4 @@
-import MiniMap from '/assets/js/UI/MiniMap.js'
+import MiniMap from '../UI/MiniMap.js'
 
 export default function Resize(GameEngine){
     window.sizeChanged = () => {
