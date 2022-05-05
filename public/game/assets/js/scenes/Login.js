@@ -21,7 +21,7 @@ export default class MainScene extends Phaser.Scene {
 
           
         })
-        
+        this.load.html('form_login', 'assets/login/loginform.html');
     }
 
     create(){
@@ -52,8 +52,9 @@ export default class MainScene extends Phaser.Scene {
             }
 
          
-    }, 5000);
+    }, 6000);
 
+    var element = this.add.dom(0, 0).createFromCache('form_login').setScrollFactor(0);
 
     }
 
