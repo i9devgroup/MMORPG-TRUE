@@ -91,6 +91,8 @@ export default class Loading extends Phaser.Scene {
         });
 
 
+        this.load.tilemapTiledJSON("map", "assets/tilemaps/map.json");
+        this.load.image("tiles", "assets/tilemaps/tiles.png");
 
     for (let index = 0; index < 8; index++) {
      

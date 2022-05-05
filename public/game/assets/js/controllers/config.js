@@ -10,6 +10,16 @@ const config = {
     backgroundColor: '#351f1b',
     type: Phaser.WEBGL,
     parent: 'game-body',
+    plugins: {
+      scene: [
+        {
+          key: "NavMeshPlugin", // Key to store the plugin class under in cache
+          plugin: PhaserNavMeshPlugin, // Class that constructs plugins
+          mapping: "navMeshPlugin", // Property mapping to use for the scene, e.g. this.navMeshPlugin
+          start: true,
+        },
+      ],
+    },
     scene: [Loading, MainScene],
     scale: {
       zoom: 1
