@@ -1,5 +1,6 @@
 import Loading from '/assets/js/scenes/Loading.js'
 import MainScene from '/assets/js/scenes/MainScene.js'
+import Login from '/assets/js/scenes/Login.js'
 
 
 const config = {
@@ -8,19 +9,9 @@ const config = {
     width: 512,
     height: 512,
     backgroundColor: '#351f1b',
-    type: Phaser.WEBGL,
+    type: Phaser.AUTO,
     parent: 'game-body',
-    plugins: {
-      scene: [
-        {
-          key: "NavMeshPlugin", // Key to store the plugin class under in cache
-          plugin: PhaserNavMeshPlugin, // Class that constructs plugins
-          mapping: "navMeshPlugin", // Property mapping to use for the scene, e.g. this.navMeshPlugin
-          start: true,
-        },
-      ],
-    },
-    scene: [Loading, MainScene],
+    scene: [Loading, Login,MainScene],
     scale: {
       zoom: 1
     },

@@ -1,5 +1,5 @@
 export default function MiniMap(GameEngine){
-   
+
     if(GameEngine.MiniMap){
         GameEngine.MiniMap.borda.destroy()
         GameEngine.MiniMap.mascara.destroy()
@@ -44,8 +44,8 @@ export default function MiniMap(GameEngine){
   
   
   
-    GameEngine.MiniMap.map.startFollow(GameEngine.player, true);
-    GameEngine.MiniMap.map.setFollowOffset(-GameEngine.player.width, -GameEngine.player.height);
+    GameEngine.MiniMap.map.startFollow(GameEngine.player.Container, true);
+    GameEngine.MiniMap.map.setFollowOffset(-GameEngine.player.Container.width, -GameEngine.player.Container.height);
   
     const mask = GameEngine.MiniMap.mascara.createGeometryMask();
   

@@ -1,42 +1,68 @@
 export default function Controlers(GameEngine){
     
     let playerVelocity = new Phaser.Math.Vector2()
-    var player = GameEngine.player
-    
+    var player = GameEngine.player.Container
+    var player_sprite = GameEngine.player.Sprite
 
+  
 
-      if(GameEngine.keys.A.isDown) {
+      // TOP-RIGHT
+      if(GameEngine.keys.W.isDown && GameEngine.keys.A.isDown) {
         playerVelocity.x = -160
-        player.anims.play('left', true);
+        playerVelocity.y = -160
+        player_sprite.anims.play('left', true);
+      // TOP-LEFT
+      }else if(GameEngine.keys.W.isDown && GameEngine.keys.D.isDown) {
+        playerVelocity.x = 160
+        playerVelocity.y = -160
+        player_sprite.anims.play('right', true);
+      // DOWN-LEFT
+      }else if(GameEngine.keys.S.isDown && GameEngine.keys.A.isDown) {
+        playerVelocity.x = -160
+        playerVelocity.y = 160
+        player_sprite.anims.play('left', true);
+      // DOWN-RIGHT
+      }else if(GameEngine.keys.S.isDown && GameEngine.keys.D.isDown) {
+        playerVelocity.x = 160
+        playerVelocity.y = 160
+        player_sprite.anims.play('right', true);
+      // LEFT
+      }else if(GameEngine.keys.A.isDown) {
+        playerVelocity.x = -160
+        player_sprite.anims.play('left', true);
+      // RIGHT
       }else if (GameEngine.keys.D.isDown) {
         playerVelocity.x = 160
-        console.log(playerVelocity.x)
-        player.anims.play('right', true);
+        player_sprite.anims.play('right', true);
+      // TOP
       }else if(GameEngine.keys.W.isDown) {
         playerVelocity.y = -160
-        player.anims.play('up', true);
+        player_sprite.anims.play('up', true);
+      // DOWN
       } else if (GameEngine.keys.S.isDown) {
-        player.anims.play('down', true);
+        player_sprite.anims.play('down', true);
         playerVelocity.y = 160
+      // TOP
       }else{
-        player.anims.pause()
+        player_sprite.anims.pause()
         playerVelocity.y = 0
+        playerVelocity.x = 0
       }
 
       
 
       if (GameEngine.keys.SHIFT.isDown) {
-        if(GameEngine.player_info.status.stamina > 0){
-          var speed = (GameEngine.player_info.status.speed)*80;
+        if(GameEngine.player.Status.stamina > 0){
+          var speed = (GameEngine.player.Status.speed)*80;
         }else{
-          var speed = (GameEngine.player_info.status.speed)*50;
+          var speed = (GameEngine.player.Status.speed)*50;
         }
 
 
 
         setTimeout(() => {
-          if(GameEngine.player_info.status.stamina > 0){
-            GameEngine.player_info.status.stamina = GameEngine.player_info.status.stamina-10
+          if(GameEngine.player.Status.stamina > 0){
+            GameEngine.player.Status.stamina = GameEngine.player.Status.stamina-10
           }
           
         }, 500);
@@ -45,32 +71,32 @@ export default function Controlers(GameEngine){
         
         
       }else{
-        var speed = GameEngine.player_info.status.speed*50;
+        var speed = GameEngine.player.Status.speed*50;
 
-        if(GameEngine.player_info.status.interval_stamina == null){
+        if(GameEngine.player.Status.interval_stamina == null){
 
-          if(GameEngine.player_info.status.max_stamina != GameEngine.player_info.status.stamina){
+          if(GameEngine.player.Status.max_stamina != GameEngine.player.Status.stamina){
 
             console.log('stamina max')
             
-            GameEngine.player_info.status.interval_stamina = setInterval(() => {
+            GameEngine.player.Status.interval_stamina = setInterval(() => {
 
           
-              GameEngine.player_info.status.stamina = GameEngine.player_info.status.stamina+10
-              console.log('recarregando stamina:', GameEngine.player_info.status.stamina)
+              GameEngine.player.Status.stamina = GameEngine.player.Status.stamina+10
+              console.log('recarregando stamina:', GameEngine.player.Status.stamina)
            
             
-          }, GameEngine.player_info.status.recharge_stamina);
+          }, GameEngine.player.Status.recharge_stamina);
 
           }else{
-            clearInterval(GameEngine.player_info.status.interval_stamina);
-            GameEngine.player_info.status.interval_stamina = null;
+            clearInterval(GameEngine.player.Status.interval_stamina);
+            GameEngine.player.Status.interval_stamina = null;
           }
 
         }else{
-          if(GameEngine.player_info.status.max_stamina == GameEngine.player_info.status.stamina){
-            clearInterval(GameEngine.player_info.status.interval_stamina);
-            GameEngine.player_info.status.interval_stamina = null;
+          if(GameEngine.player.Status.max_stamina == GameEngine.player.Status.stamina){
+            clearInterval(GameEngine.player.Status.interval_stamina);
+            GameEngine.player.Status.interval_stamina = null;
           }
           
         }
@@ -81,9 +107,11 @@ export default function Controlers(GameEngine){
       }
    
 
-      
+
     playerVelocity.normalize();
     playerVelocity.scale(speed)
+
+    player.body.setMaxSpeed(speed);
     player.body.setVelocity(playerVelocity.x,playerVelocity.y)
  
 }

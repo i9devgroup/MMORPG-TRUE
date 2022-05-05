@@ -1,5 +1,6 @@
 export default function AnimationSprite(GameEngine){
-    var player_id = GameEngine.player_info.nameSprite
+    var player_id = GameEngine.player.NameSprite
+    
 
     GameEngine.anims.create({
         key: 'up',

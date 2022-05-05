@@ -1,20 +1,29 @@
 export default function GetPlayer(GameEngine){
     
     var player = {
-        name: 'BlackOut',
-        nameSprite: 'player-4',
-        level: '25',
-        exp: '200',
-        gold_inventario:'500',
-        status:{
+        Id:32,
+        Name: 'BlackOut',
+        Sprite: null,
+        Container:null,
+        NameSprite: 'player-4',
+        Level: '25',
+        Exp: '200',
+        Cla: 'GodAngel',
+        Gold_inventario:'500',
+        Status:{
+            killer:0,
             speed:2,
             stamina:500,
             max_stamina:500,
             recharge_stamina:500,
             interval_stamina:null
+        },
+        Map:{
+            x:150,
+            y:150
         }
     }
 
-    GameEngine.player_info = player;
+    GameEngine.player = player;
 
 }

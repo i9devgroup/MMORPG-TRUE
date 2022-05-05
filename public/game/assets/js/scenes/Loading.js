@@ -87,13 +87,10 @@ export default class Loading extends Phaser.Scene {
             clearTimeout(timer)
             assetText.destroy();
             
-            GAME_ENGINE.scene.start('MainScene')   
+            GAME_ENGINE.scene.start('Login')   
         });
 
-
-        this.load.tilemapTiledJSON("map", "assets/tilemaps/map.json");
-        this.load.image("tiles", "assets/tilemaps/tiles.png");
-
+        this.load.image("pk", "assets/player/pk.png"); 
     for (let index = 0; index < 8; index++) {
      
         this.load.spritesheet("player-"+index+"", "assets/player/characters/characters-"+index+".png", {
