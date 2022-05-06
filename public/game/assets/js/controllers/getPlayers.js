@@ -8,7 +8,7 @@ export default function GetPlayer(GameEngine){
 
        var local = 100;
         data.forEach(element => {
-            
+            console.log(element.NameSprite)
 
             GameEngine.selectPlayers[element.idCharecters] = GameEngine.add.sprite(local, width,element.NameSprite)
             GameEngine.selectPlayers[element.idCharecters].displayWidth = 72

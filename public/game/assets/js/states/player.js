@@ -7,7 +7,6 @@ GameEngine.player.Container = GameEngine.add.container(GameEngine.player.Map.x, 
 GameEngine.player.Container.setSize(32,56, false)
 
 
-console.log(GameEngine.player.Container)
 
 
 GameEngine.player.Sprite = GameEngine.add.sprite(1, -8,player.nameSprite);
