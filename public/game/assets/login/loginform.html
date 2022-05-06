@@ -1,47 +1,129 @@
 
 
-<div style="position:absolute; width: 100vw; height: 100vw;background-color:rgba(16 18 27 / 40%);backdrop-filter: blur(5px);">
+<div style="position:absolute; width: 100vw; height: 100vw; backdrop-filter: blur(20px); background: url('https://i.pinimg.com/originals/24/0e/7f/240e7f147e24826d3e151acfa72309a8.gif');">
+    <div class="container" style="backdrop-filter: blur(15px); border-radius: 15px;background-color: hsl(240deg 3% 11% / 50%); margin-top: 13rem;height: 563px;width: 1025px;">
+        <div class="row">
+            <div class="col-12" style="margin-top: 5rem;">
+                <img style="margin-left: 83px;" src="https://see.fontimg.com/api/renderfont4/8w7J/eyJyIjoiZnMiLCJoIjo0OSwidyI6MTAwMCwiZnMiOjQ5LCJmZ2MiOiIjRkZGREZEIiwiYmdjIjoiIzAwMDAwMCIsInQiOjF9/R29sZExhbmQg/alternity.png" alt="">
+            </div>
+        </div>
+        <div class="row" style="margin-top: 1rem;">
+            <div class="col-1"></div>
+            <div class="col-4">
+                <div class="form_lateral">
+                    <span class="welcome">Welcome back!</span>
+                    <br>
+                    <span class="sigin">
+                        Sign in to <b>MMORPG</b>
+                    </span>
+                    <br><br>
+                    <form>
+                        <div class="form-group">
+                          <input type="text" autocomplete="off" class="form-control formulario" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Login">
+                        </div>
+                        <div class="form-group" style="margin-top   : 1rem; margin-bottom: 1rem;">
+                          <input type="password" autocomplete="off" class="form-control formulario" id="exampleInputPassword1" placeholder="Password">
+                        </div>
 
-
-  <div class="row">
-    <div class="col-4">
-        <div class="form_lateral" >
-            <span class="welcome">Welcome back!</span>
-            <br>
-            <span class="sigin">Sign in to <b>MMORPG</b></span>
+                        <small id="emailHelp" class="form-text text-muted" style="margin-bottom: 1rem;">Nunca compartilhe seu login e senha com ninguém</small>
+                        <br>
+                        <!-- <div class="form-check" style="margin-top: 1rem;">
+                          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                          <label class="form-check-label" for="exampleCheck1">Lembrar-me</label>
+                        </div> -->
+                        <div class="col-12" style="margin-top: 14px; margin-left: 72px;">
+                            <button type="submit" class="btn btn-logar" style="margin-bottom: 1rem;">REGISTER</button>
+                            <button type="submit" class="btn btn-logar" style="margin-bottom: 1rem;">JOIN</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-7" style="text-align: center;">
+                <img style="width: 310px;margin-top: -100px;" class="objeto-a-flutuar" src="../assets/image/pnginland.png" alt="...">
+            </div>
         </div>
     </div>
-    <div class="col-4">
-   
-    </div>
-    <div class="col-4">
-
-    </div>
-  </div>
-   
-
-
-
-
 </div>
 
 
 <style>
-    .form_lateral{
-      
-        white-space: nowrap;
-        z-index: 99999;
-        font-size: 14px;
-        color: white;
-        top: 141px;
-    }
-    .welcome{
-        font-size: 26px;
-    }
-    .sigin{
-       
-        font-size: 14px;
-    }
+
+*{
+    font-family:Arial, Helvetica, sans-serif
+}
+
+.form_lateral{
+    white-space: nowrap;
+    z-index: 99999;
+    font-size: 14px;
+    color: white;
+    top: 120px;
+}
+.welcome{
+    font-size: 26px;
+}
+.sigin{
+    font-size: 14px;
+}
+
+.formulario{
+    background-color: #2f30344f;
+    color: #fff;
+    border: none;
+    backdrop-filter: blur(20px);
+    font-weight: bold;
+    height: 50px;
+    width: 278px;
+    border: 1px solid #4f4e53;
+}
+
+.formulario:focus{  
+    background-color: #2f30344f;
+    backdrop-filter: blur(20px);
+    border: none;
+    box-shadow: none;
+    color: #fff;
+    border: 1px solid #4f4e53;
+}
+
+.btn-logar{
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    border-radius: 10px;
+    height: 40px;
+    width: 101px;
+    font-size: 10pt;
+    padding: 0px;
+}
+
+.btn-logar:focus{
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    border-radius: 10px;
+    height: 40px;
+    width: 101px;
+    font-size: 10pt;
+    padding: 0px;
+    box-shadow: none;
+}
+
+.objeto-a-flutuar{
+    animation: floating-text 7s linear infinite;
+}
+
+@keyframes floating-text {
+  0%, 50%, 100% {
+    margin-top: -100px;
+  }
+  25% {
+    margin-top: -80px;
+  }
+  75% {
+    margin-top: -90px
+  }
+}
 </style>
 
 
