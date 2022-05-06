@@ -32,7 +32,8 @@ io.onConnection((channel) => {
   })
 
 
-  channel.on('chat message', (data) => {
+
+  channel.on('info_player', (data) => {
     
   })
 })
@@ -52,6 +53,9 @@ app.get('/', (req, res) => {
 
 app.get('/game', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/game/index.html'))
+})
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/game/login.html'))
 })
 
 http.createServer(app).listen(port, () =>
