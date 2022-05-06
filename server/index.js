@@ -54,6 +54,19 @@ io.onConnection((channel) => {
   })
 
 
+  
+  channel.on('SceneSelecaoPersonagens', (data) => {
+
+    var sql = `SELECT * FROM charecters WHERE AccontId = '${data.id}'`;
+
+    connection.query(sql, function(err2, results){
+     
+      
+      channel.emit('SelecaoPersonagens', results)
+    })
+   
+
+  })
 
   channel.on('QueryLogin', (data) => {
   

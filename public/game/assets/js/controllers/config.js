@@ -1,6 +1,6 @@
-import Loading from '../scenes/Loading.js'
+import Loading from '../scenes/loading.js'
 import MainScene from '../scenes/MainScene.js'
-import Login from '../scenes/Login.js'
+import SelecaoPersonagem from '../scenes/SelecaoPersonagem.js'
 
 
 const config = {
@@ -11,7 +11,7 @@ const config = {
     backgroundColor: '#351f1b',
     type: Phaser.AUTO,
     parent: 'game-body',
-    scene: [Loading, Login, MainScene],
+    scene: [Loading, SelecaoPersonagem, MainScene],
     scale: {
       zoom: 1
     },

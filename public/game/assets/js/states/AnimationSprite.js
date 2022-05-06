@@ -1,6 +1,7 @@
-export default function AnimationSprite(GameEngine){
-    var player_id = GameEngine.player.NameSprite
+export default function AnimationSprite(GameEngine, Sprite){
+    var player_id = Sprite
     
+  
 
     GameEngine.anims.create({
         key: 'up',
@@ -27,7 +28,7 @@ export default function AnimationSprite(GameEngine){
 
     GameEngine.anims.create({
         key: 'right',
-        frames: GameEngine.anims.generateFrameNumbers(player_id, { start: 6, end: 8 }),
+        frames: GameEngine.anims.generateFrameNumbers(player_id, { start: 8, end:  6}),
         frameRate: 10,
         repeat: -1
     });

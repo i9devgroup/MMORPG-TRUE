@@ -1,6 +1,7 @@
 if(!localStorage.getItem('Account')){
     window.location.href = "/login";
 }
+
 export default class Loading extends Phaser.Scene {
     constructor(){
         super('Loading')
@@ -8,6 +9,7 @@ export default class Loading extends Phaser.Scene {
 
     preload(){
         var GAME_ENGINE = this;
+       
         var progressBar = this.add.graphics();
         var progressBox = this.add.graphics();
         progressBox.fillStyle(0x222222, 0.8);
@@ -91,8 +93,18 @@ export default class Loading extends Phaser.Scene {
 
             
             var channel = geckos({ port: 6363 })
+
+            var infosAccont = JSON.parse(localStorage.getItem('Account'));
             
-            GAME_ENGINE.scene.start('Login', { channel: channel })
+            channel.onConnect(function (error) {
+                if (error) {
+                  console.error(error.message)
+                } else {
+                    GAME_ENGINE.scene.start('SelecaoPersonagem', { channel: channel, infosAccont:infosAccont })
+                }
+              })
+            
+            
         });
 
         this.load.image("pk", "assets/player/pk.png"); 

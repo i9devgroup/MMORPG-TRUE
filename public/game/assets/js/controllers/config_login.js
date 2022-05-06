@@ -24,7 +24,7 @@ $(document).on('click', '#login-account', function(e){
     
         $(this).attr('disabled', true)
     
-        window.channel.emit('QueryLogin', login)
+        channel.emit('QueryLogin', login)
     }else{
 
         var toast = new bootstrap.Toast(toastLoginVazio)
