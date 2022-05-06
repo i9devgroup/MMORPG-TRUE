@@ -89,6 +89,7 @@ export default class Loading extends Phaser.Scene {
 
             
             var channel = geckos({ port: 6363 })
+            
             GAME_ENGINE.scene.start('Login', { channel: channel })
         });
 

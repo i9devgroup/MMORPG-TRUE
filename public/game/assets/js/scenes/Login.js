@@ -17,24 +17,19 @@ export default class MainScene extends Phaser.Scene {
       this.load.tilemapTiledJSON('desert', 'assets/maps/desert.json');
 
       
-            
-      this.channel.onConnect(function (error) {
-          if (error) {
-            console.error(error.message)
-          } else {
-            console.log("You're connected on MMORPG")
-          }
-        })
+     console.log(localStorage.getItem('Account'))
 
 
         setTimeout(() => {
           // GAME_ENGINE.scene.start('Login', { id_player: 1 })
         }, 3000);
 
-        this.load.html('form_login', 'assets/login/loginform.html');
+      
     }
 
     create(){
+
+      console.log(localStorage.getItem('Account'))
 
     loadMaps(this)
     this.cameras.main.setBounds(0, 0, 1024, 2048);

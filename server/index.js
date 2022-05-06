@@ -9,9 +9,31 @@ import { dirname } from 'path'
 import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
-import {incia_conexao} from './conexao/connect.js'
+// import {incia_conexao} from './conexao/connect.js'
 
-incia_conexao()
+// incia_conexao()
+
+var connection = mysql.createConnection({
+  host: "144.22.225.253",
+  user: "aplicacao",
+  port: "3306",
+  password: "conline@2510A",
+  database: "RPG",
+  charset: "utf8mb4"
+});
+
+connection.connect(function(err) {
+
+if(err){
+  console.log('ERRO AO ACESSAR DB --> MYSQL')
+  setTimeout(incia_conexao, 2000);
+}else{
+    console.log('CONECTADO DB --> MYSQL')
+}
+
+}); 
+
+
 const port = 3002;
 const io = geckos()
 io.listen(6363)
@@ -33,8 +55,40 @@ io.onConnection((channel) => {
 
 
 
-  channel.on('info_player', (data) => {
+  channel.on('QueryLogin', (data) => {
+  
+
+
+    var sql = `SELECT * FROM users WHERE login = '${data.username}' AND senha = '${data.password}'`;
+      connection.query(sql, function(err2, results){
     
+        
+
+        if(results.length){
+       
+          setTimeout(() => {
+            var saida = {
+              status:true,
+              id:results[0]['idUsers'],
+              name:results[0]['name']
+            }
+            channel.emit('StatusLogin', saida)
+          }, 3000);
+
+        }else{
+
+          var saida = {
+            status:false
+          }
+          channel.emit('StatusLogin', saida)
+
+        }
+        
+
+        
+
+            
+      })
   })
 })
 

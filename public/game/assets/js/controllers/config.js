@@ -11,7 +11,7 @@ const config = {
     backgroundColor: '#351f1b',
     type: Phaser.AUTO,
     parent: 'game-body',
-    scene: [Loading, Login,MainScene],
+    scene: [Loading, Login, MainScene],
     scale: {
       zoom: 1
     },
