@@ -1,3 +1,6 @@
+localStorage.removeItem('Account');
+localStorage.clear();
+
 var channel = geckos({ port: 6363 })
 
 channel.onConnect(function (error) {
