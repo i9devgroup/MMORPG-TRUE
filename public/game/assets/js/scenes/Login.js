@@ -29,7 +29,7 @@ export default class MainScene extends Phaser.Scene {
 
     create(){
 
-      console.log(localStorage.getItem('Account'))
+    
 
     loadMaps(this)
     this.cameras.main.setBounds(0, 0, 1024, 2048);

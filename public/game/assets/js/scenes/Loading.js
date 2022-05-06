@@ -1,4 +1,6 @@
-
+if(!localStorage.getItem('Account')){
+    window.location.href = "/login";
+}
 export default class Loading extends Phaser.Scene {
     constructor(){
         super('Loading')
