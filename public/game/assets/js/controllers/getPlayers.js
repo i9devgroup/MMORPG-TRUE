@@ -5,7 +5,7 @@ export default function GetPlayer(GameEngine){
     var width = GameEngine.cameras.main.height-125;
     GameEngine.channel.on('SelecaoPersonagens', (data) => {
 
-
+console.log(data)
        var local = 100;
         data.forEach(element => {
             console.log(element.NameSprite)

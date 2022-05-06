@@ -15,15 +15,17 @@ export default class MainScene extends Phaser.Scene {
       // this.load.image("Select_ceu", "assets/image/ceu.png")
       this.load.image("Select_forest", "assets/image/forest.png")
       
+     
     }
 
     create(){
       // this.bg = this.add.tileSprite(0, 38, 800, 296, 'Select_ceu')
       // .setOrigin(0, 0);
-     
+      
     this.trees = this.add.tileSprite(0, 0, 2220, 1080, 'Select_forest')
     .setOrigin(0, 0);
 
+   
 
     let scaleX = window.innerWidth / this.trees.width
     let scaleY = window.innerHeight / this.trees.height
@@ -34,7 +36,8 @@ export default class MainScene extends Phaser.Scene {
 
      
       // this.add.sprite(0, 0,'GifForest')
-      AnimationSprite(this, 'player-4')
+      
+      AnimationSprite(this)
       GetPlayers(this)
       
     

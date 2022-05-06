@@ -53,7 +53,40 @@ io.onConnection((channel) => {
     console.log(`${channel.id} got disconnected`)
   })
 
+  
+  
 
+  channel.on('AnimationPersonagens', (data) => {
+    console.log('consutltou animacao')
+
+    var sql = `SELECT * FROM skins_players`;
+
+    connection.query(sql, function(err2, results){
+     
+      
+      channel.emit('AnimationPersonagens', results)
+  
+    })
+  })
+
+  channel.on('SpritPersonagens', (data) => {
+    console.log('consutltou sprite')
+
+    var sql = `SELECT * FROM skins_players`;
+
+    connection.query(sql, function(err2, results){
+     
+      console.log(results)
+      channel.emit('SpritPersonagens', results)
+
+      channel.emit('StartGame')
+     
+    })
+  })
+
+  // setInterval(() => {
+  //   channel.emit('SpritPersonagens', 'dsadsa')
+  // }, 2000);
   
   channel.on('SceneSelecaoPersonagens', (data) => {
 

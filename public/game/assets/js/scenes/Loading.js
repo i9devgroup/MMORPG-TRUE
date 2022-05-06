@@ -1,6 +1,13 @@
 if(!localStorage.getItem('Account')){
     window.location.href = "/login";
 }
+var channel = geckos({ port: 6363 })
+
+
+
+
+
+
 
 export default class Loading extends Phaser.Scene {
     constructor(){
@@ -8,8 +15,7 @@ export default class Loading extends Phaser.Scene {
     }
 
     preload(){
-        var GAME_ENGINE = this;
-       
+        var GameEngine = this;
         var progressBar = this.add.graphics();
         var progressBox = this.add.graphics();
         progressBox.fillStyle(0x222222, 0.8);
@@ -83,6 +89,12 @@ export default class Loading extends Phaser.Scene {
         });
         
 
+        
+        
+
+     
+        
+
         this.load.on('complete', function () {
             progressBar.destroy();
             progressBox.destroy();
@@ -91,31 +103,45 @@ export default class Loading extends Phaser.Scene {
             clearTimeout(timer)
             assetText.destroy();
 
-            
-            var channel = geckos({ port: 6363 })
-
             var infosAccont = JSON.parse(localStorage.getItem('Account'));
-            
-            channel.onConnect(function (error) {
-                if (error) {
-                  console.error(error.message)
-                } else {
-                    GAME_ENGINE.scene.start('SelecaoPersonagem', { channel: channel, infosAccont:infosAccont })
-                }
-              })
+            GameEngine.scene.start('SelecaoPersonagem', { channel: channel, infosAccont:infosAccont }) 
             
             
         });
 
         this.load.image("pk", "assets/player/pk.png"); 
-    for (let index = 0; index < 8; index++) {
-     
-        this.load.spritesheet("player-"+index+"", "assets/player/characters/characters-"+index+".png", {
-            frameWidth: 52,
-            frameHeight: 72,
-            });  
+        this.load.spritesheet("character-1", "assets/tiles/characters/chara1.png", {
+                frameWidth: 52,
+                frameHeight: 72,
+                }); 
+       
+        channel.onConnect(function (error) {
+            if (error) {
+              console.error(error.message)
+            }else{
+                console.log('conectou')
+              
+            }
+          })
+
+          
+
+        // channel.on('StartGame', (data) => {
+        //     console.log('start')
+            
+            
+        // })
         
-    }
+        
+
+    // for (let index = 0; index < 8; index++) {
+     
+    //     this.load.spritesheet("player-"+index+"", "assets/player/characters/characters-"+index+".png", {
+    //         frameWidth: 52,
+    //         frameHeight: 72,
+    //         });  
+        
+    // }
 
 
 
