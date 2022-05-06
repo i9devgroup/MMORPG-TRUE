@@ -25,6 +25,11 @@ $(document).on('click', '#login-account', function(e){
         $(this).attr('disabled', true)
     
         window.channel.emit('QueryLogin', login)
+    }else{
+
+        var toast = new bootstrap.Toast(toastLoginVazio)
+        toast.show()
+        
     }
     
 
@@ -38,10 +43,17 @@ channel.on('StatusLogin', (data) => {
         console.log(data)
     if(data.status == true){
         localStorage.setItem('Account', JSON.stringify(data));
-        window.location.href = "/game";
+
+        var toast = new bootstrap.Toast(toastLoginSucesso)
+        toast.show()
+        
+        setTimeout(() => {
+            window.location.href = "/game";  
+        }, 3000);
+
     }else{
 
-        var toast = new bootstrap.Toast(toastLiveExample)
+        var toast = new bootstrap.Toast(toastLoginIncorreto)
         toast.show()
 
         $('#login-account').attr('disabled', false)
