@@ -9,6 +9,24 @@
 </head>
 <body style="background: url('https://i.pinimg.com/originals/24/0e/7f/240e7f147e24826d3e151acfa72309a8.gif'); background-repeat:no-repeat;">
   
+    <button type="button" class="btn btn-primary" id="liveToastBtn">Mostrar notificação</button>
+
+    <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+      <div id="liveToast" class="toast Notification-janela" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header" style="background: none;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16" style="margin-right: 5px;color: #fff;">
+                <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
+            </svg>
+          <strong class="me-auto" style="color: #fff">Aviso</strong>
+          <small style="color: rgb(176, 176, 176)">11 mins ago</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" style="color: rgb(176, 176, 176)"></button>
+        </div>
+        <div class="toast-body" style="color: rgb(176, 176, 176)">
+          Login ou senha incorreto
+        </div>
+      </div>
+    </div>
+
 <div class="container" style="backdrop-filter: blur(15px); border-radius: 15px;background-color: hsl(240deg 3% 11% / 50%); margin-top: 10vw;height: 563px;width: 1025px;">
     <div class="row">
         <div class="col-12" style="margin-top: 5rem;">
@@ -131,6 +149,12 @@
     margin-top: -90px
   }
 }
+
+.Notification-janela{
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    background-color: rgba(27, 27, 29, 50%);
+}
 </style>
 
 
@@ -143,6 +167,22 @@
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
    <script src="/game/assets/js/libs/geckos.io-client.2.2.0.min.js"></script>
    <script src="/game/assets/js/controllers/config_login.js"></script>
+
+
+
+<script>
+
+var toastTrigger = document.getElementById('liveToastBtn')
+var toastLiveExample = document.getElementById('liveToast')
+if (toastTrigger) {
+  toastTrigger.addEventListener('click', function () {
+    var toast = new bootstrap.Toast(toastLiveExample)
+
+    toast.show()
+  })
+}
+
+</script>
 
 </body>
 </html>
