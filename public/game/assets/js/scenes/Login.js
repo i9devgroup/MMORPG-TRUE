@@ -1,8 +1,14 @@
 
+// var channel = geckos({ port: 6363 })
 
 export default class MainScene extends Phaser.Scene {
     constructor(){
         super('Login')
+    }
+
+    init({ channel }) {
+    
+      this.channel = channel
     }
 
     preload(){
@@ -10,17 +16,21 @@ export default class MainScene extends Phaser.Scene {
       this.load.image('tiles_desert', 'assets/maps/desert.png');
       this.load.tilemapTiledJSON('desert', 'assets/maps/desert.json');
 
-      var channel = geckos({ port: 6363 })
+      
             
-      channel.onConnect(function (error) {
+      this.channel.onConnect(function (error) {
           if (error) {
             console.error(error.message)
           } else {
             console.log("You're connected on MMORPG")
           }
-
-          
         })
+
+
+        setTimeout(() => {
+          // GAME_ENGINE.scene.start('Login', { id_player: 1 })
+        }, 3000);
+
         this.load.html('form_login', 'assets/login/loginform.html');
     }
 

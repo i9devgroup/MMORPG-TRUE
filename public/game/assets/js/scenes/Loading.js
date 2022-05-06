@@ -88,7 +88,8 @@ export default class Loading extends Phaser.Scene {
             assetText.destroy();
 
             
-            GAME_ENGINE.scene.start('Login')   
+            var channel = geckos({ port: 6363 })
+            GAME_ENGINE.scene.start('Login', { channel: channel })
         });
 
         this.load.image("pk", "assets/player/pk.png"); 
