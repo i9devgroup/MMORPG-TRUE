@@ -19,22 +19,48 @@ export default class MainScene extends Phaser.Scene {
     }
 
     create(){
+
+      
   
       
     this.trees = this.add.tileSprite(0, 0, 2220, 1080, 'Select_forest')
     .setOrigin(0, 0);
 
    
+
+   
     let scaleX = window.innerWidth / this.trees.width
     let scaleY = window.innerHeight / this.trees.height
     let scale = Math.max(scaleX, scaleY)
     this.trees.setScale(scale)
+
+    var NewCharacter = this.add.text((this.cameras.main.width-250)/2,50,'NewCharacter',{
+      fontFamily:'Courier',
+      color:'#FFFFFF',
+      stroke: '#FFFFF',
+      strokeThickness: 4,
+      shadow: {
+          offsetX: 0,
+          offsetY: 0,
+          color: '#FFF',
+          blur: 5,
+          stroke: true,
+          fill: true
+      },
+    }).setFontSize(30).setInteractive();
+
+    NewCharacter.on('pointerdown', function (pointer, x, y, event) {
+
+      alert('Create new character')
+      event.stopPropagation();
+
+  });
    
    
 
      
       // this.add.sprite(0, 0,'GifForest')
-
+      
       ListCharacters(this)
       
     
@@ -61,7 +87,7 @@ export default class MainScene extends Phaser.Scene {
     update(){
   
       // this.bg.tilePositionX -= 1;
-      this.trees.tilePositionX -= 2;
+      this.trees.tilePositionX -= 0.7;
     }
 
 

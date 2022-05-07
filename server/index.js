@@ -55,32 +55,23 @@ io.onConnection((channel) => {
 
   
   
-
-  channel.on('AnimationPersonagens', (data) => {
-    console.log('consutltou animacao')
-
-    var sql = `SELECT * FROM skins_players`;
-
-    connection.query(sql, function(err2, results){
-     
-      
-      channel.emit('AnimationPersonagens', results)
-  
-    })
-  })
-
   channel.on('SpritPersonagens', (data) => {
     console.log('consutltou sprite')
 
-    var sql = `SELECT * FROM skins_players`;
+    var sql = `SELECT
+    skins_players.name as name,
+    ANY_VALUE(skins_players.w) as w,
+    ANY_VALUE(skins_players.h) as h,
+    ANY_VALUE(skins_players.local) as local
+    FROM RPG.skins_players
+    GROUP BY name`;
 
     connection.query(sql, function(err2, results){
      
       console.log(results)
       channel.emit('SpritPersonagens', results)
 
-      channel.emit('StartGame')
-     
+
     })
   })
 
@@ -90,12 +81,20 @@ io.onConnection((channel) => {
   
   channel.on('ListCharacters', (data) => {
 
-    var sql = `SELECT * FROM charecters WHERE AccontId = '${data.id}'`;
+    var sql = `SELECT RPG.characters.idCharecters, 
+    RPG.characters.Name as NickPlayer,
+    RPG.characters.Level as LevelPlayer,
+    RPG.characters.Cla as ClaPlayer,
+    RPG.skins_players.name as NameSkin,
+    RPG.skins_players.filename as FileName
+    FROM RPG.characters 
+    JOIN RPG.skins_players ON RPG.skins_players.id = RPG.characters.skinSprite
+    WHERE AccontId = '${data.id}'`;
 
     connection.query(sql, function(err2, results){
      
-        console.log(sql)
-      channel.emit('ListCharacters', results)
+
+      channel.emit('ListCharactersRec', results)
     })
    
 
@@ -103,8 +102,6 @@ io.onConnection((channel) => {
 
   channel.on('QueryLogin', (data) => {
   
-
-
     var sql = `SELECT * FROM users WHERE login = '${data.username}' AND senha = '${data.password}'`;
       connection.query(sql, function(err2, results){
     
@@ -149,6 +146,69 @@ io.onConnection((channel) => {
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/website/home.html'))
+})
+
+app.get('/Animation', (req, res) => {
+  var sql = `SELECT * FROM RPG.skins_players
+  JOIN RPG.animations
+  ON 
+  RPG.animations.template = RPG.skins_players.id`;
+
+var animations = [];
+var animationsPronto = [];
+
+    connection.query(sql, function(err2, results){
+
+     
+      results.forEach(element => {
+
+        var ListFrames = []    
+        for (let index = element.start; index < element.end+1;index++) {
+
+          var frames = {
+            
+            "key": element.filename,
+            "frame": index,
+            "duration": 0
+          }
+     
+          ListFrames.push(frames)
+          
+        }
+ 
+        
+
+        
+        var types = {
+          "key": element.name+'_'+element.type,
+          "type": "frame",
+          "frames": ListFrames,
+          "frameRate": element.framerate,
+          "duration": 0,
+          "skipMissedFrames": true,
+          "delay": 0,
+          "repeat": -1,
+          "repeatDelay": 0,
+          "yoyo": false,
+          "showOnStart": false,
+          "hideOnComplete": false
+        }
+
+        animations.push(types) 
+
+        animationsPronto = {
+          anims:animations
+        }
+      });
+     
+     
+     
+      
+ 
+        
+      res.json(animationsPronto)
+  
+    })
 })
 
 app.get('/game', (req, res) => {
