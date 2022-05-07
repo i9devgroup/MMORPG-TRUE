@@ -88,14 +88,14 @@ io.onConnection((channel) => {
   //   channel.emit('SpritPersonagens', 'dsadsa')
   // }, 2000);
   
-  channel.on('SceneSelecaoPersonagens', (data) => {
+  channel.on('ListCharacters', (data) => {
 
     var sql = `SELECT * FROM charecters WHERE AccontId = '${data.id}'`;
 
     connection.query(sql, function(err2, results){
      
-      
-      channel.emit('SelecaoPersonagens', results)
+        console.log(sql)
+      channel.emit('ListCharacters', results)
     })
    
 

@@ -1,0 +1,35 @@
+{
+    "anims": [
+      {
+        "key": "character01_up",
+        "type": "frame",
+        "frames": [
+          {
+            "key": "character01",
+            "frame": 36,
+            "duration": 0
+          },
+          {
+            "key": "character01",
+            "frame": 37,
+            "duration": 0
+          },
+          {
+            "key": "character01",
+            "frame": 38,
+            "duration": 0
+          }
+        ],
+        "frameRate": 10,
+        "duration": 0,
+        "skipMissedFrames": true,
+        "delay": 0,
+        "repeat": -1,
+        "repeatDelay": 0,
+        "yoyo": false,
+        "showOnStart": false,
+        "hideOnComplete": false
+      }
+    ],
+    "globalTimeScale": 1
+  }

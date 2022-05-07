@@ -1,5 +1,5 @@
-import GetPlayers from '../controllers/getPlayers.js'
-import AnimationSprite from '../states/AnimationSprite.js'
+import ListCharacters from '../controllers/ListCharacters.js'
+
 
 export default class MainScene extends Phaser.Scene {
     constructor(){
@@ -19,14 +19,12 @@ export default class MainScene extends Phaser.Scene {
     }
 
     create(){
-      // this.bg = this.add.tileSprite(0, 38, 800, 296, 'Select_ceu')
-      // .setOrigin(0, 0);
+  
       
     this.trees = this.add.tileSprite(0, 0, 2220, 1080, 'Select_forest')
     .setOrigin(0, 0);
 
    
-
     let scaleX = window.innerWidth / this.trees.width
     let scaleY = window.innerHeight / this.trees.height
     let scale = Math.max(scaleX, scaleY)
@@ -36,9 +34,8 @@ export default class MainScene extends Phaser.Scene {
 
      
       // this.add.sprite(0, 0,'GifForest')
-      
-      AnimationSprite(this)
-      GetPlayers(this)
+
+      ListCharacters(this)
       
     
       this.scale.on('resize', resize, this);
