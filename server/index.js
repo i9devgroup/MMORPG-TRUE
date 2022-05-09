@@ -154,7 +154,7 @@ io.onConnection((channel) => {
 
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/website/home.html'))
+    res.sendFile(path.join(__dirname, '../public/website/index.html'))
 })
 
 app.get('/Animation', (req, res) => {
