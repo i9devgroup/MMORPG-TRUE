@@ -10,37 +10,37 @@ export default function Controlers(GameEngine){
       if(GameEngine.keys.W.isDown && GameEngine.keys.A.isDown) {
         playerVelocity.x = -160
         playerVelocity.y = -160
-        player_sprite.anims.play('left', true);
+        player_sprite.anims.play(GameEngine.player.NameSprite+'_left', true);
       // TOP-LEFT
       }else if(GameEngine.keys.W.isDown && GameEngine.keys.D.isDown) {
         playerVelocity.x = 160
         playerVelocity.y = -160
-        player_sprite.anims.play('right', true);
+        player_sprite.anims.play(GameEngine.player.NameSprite+'_right', true);
       // DOWN-LEFT
       }else if(GameEngine.keys.S.isDown && GameEngine.keys.A.isDown) {
         playerVelocity.x = -160
         playerVelocity.y = 160
-        player_sprite.anims.play('left', true);
+        player_sprite.anims.play(GameEngine.player.NameSprite+'_left', true);
       // DOWN-RIGHT
       }else if(GameEngine.keys.S.isDown && GameEngine.keys.D.isDown) {
         playerVelocity.x = 160
         playerVelocity.y = 160
-        player_sprite.anims.play('right', true);
+        player_sprite.anims.play(GameEngine.player.NameSprite+'_right', true);
       // LEFT
       }else if(GameEngine.keys.A.isDown) {
         playerVelocity.x = -160
-        player_sprite.anims.play('left', true);
+        player_sprite.anims.play(GameEngine.player.NameSprite+'_left', true);
       // RIGHT
       }else if (GameEngine.keys.D.isDown) {
         playerVelocity.x = 160
-        player_sprite.anims.play('right', true);
+        player_sprite.anims.play(GameEngine.player.NameSprite+'_right', true);
       // TOP
       }else if(GameEngine.keys.W.isDown) {
         playerVelocity.y = -160
-        player_sprite.anims.play('up', true);
+        player_sprite.anims.play(GameEngine.player.NameSprite+'_up', true);
       // DOWN
       } else if (GameEngine.keys.S.isDown) {
-        player_sprite.anims.play('down', true);
+        player_sprite.anims.play(GameEngine.player.NameSprite+'_down', true);
         playerVelocity.y = 160
       // TOP
       }else{

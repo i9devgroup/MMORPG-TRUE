@@ -80,15 +80,24 @@ io.onConnection((channel) => {
   // }, 2000);
   
   channel.on('ListCharacters', (data) => {
-
     var sql = `SELECT RPG.characters.idCharecters, 
     RPG.characters.Name as NickPlayer,
+    RPG.characters.Exp as PlayerExp,
+    RPG.characters.MapX as MapX,
+    RPG.characters.MapY as MapY,
+    RPG.characters.Gold_inventario as Gold,
     RPG.characters.Level as LevelPlayer,
     RPG.characters.Cla as ClaPlayer,
     RPG.skins_players.name as NameSkin,
-    RPG.skins_players.filename as FileName
+    RPG.skins_players.filename as FileName,
+    RPG.classes.skin_template as SkinClass,
+	  RPG.classes.name as ClassName,
+    RPG.classes.idclasses as ClassId,
+    RPG.characters.skinSprite
     FROM RPG.characters 
-    JOIN RPG.skins_players ON RPG.skins_players.id = RPG.characters.skinSprite
+    LEFT JOIN RPG.classes ON RPG.classes.idclasses = RPG.characters.Class
+    LEFT JOIN RPG.skins_players ON RPG.skins_players.id = Case When RPG.characters.skinSprite = 0 
+    Then RPG.classes.skin_template Else RPG.characters.skinSprite End
     WHERE AccontId = '${data.id}'`;
 
     connection.query(sql, function(err2, results){

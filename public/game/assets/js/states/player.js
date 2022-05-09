@@ -9,9 +9,7 @@ GameEngine.player.Container.setSize(32,56, false)
 
 
 
-GameEngine.player.Sprite = GameEngine.add.sprite(1, -8,player.nameSprite);
-
-
+GameEngine.player.Sprite = GameEngine.add.sprite(1, -8,player.nameSprite).setScale(1.8);
 
 
 
@@ -22,7 +20,7 @@ GameEngine.physics.world.enable([ GameEngine.player.Container]);
 GameEngine.player.Container.body.setBounce(1, 1).setCollideWorldBounds(true);
 
 
-GameEngine.player.Container.add(GameEngine.player.Sprite)
+GameEngine.player.Container.add(GameEngine.player.Sprite).setDepth(10);
 
 
 
@@ -63,7 +61,7 @@ if(GameEngine.player.Cla == null){
     GameEngine.player.Container.add(cla)
 }
 
-var label = GameEngine.add.text(0,-38,'BlackOut',{
+var label = GameEngine.add.text(0,-38,GameEngine.player.Name,{
     fontFamily:'Courier',
     color:'#FFFFFF',
     stroke: '#000000',
@@ -81,8 +79,9 @@ var label = GameEngine.add.text(0,-38,'BlackOut',{
   label.setOrigin(0.5)
 
 
-  
+
 
   GameEngine.player.Container.add(label)
-  GameEngine.player.Sprite.anims.play('down', true);
+  var AnimationName = GameEngine.player.NameSprite+'_down';
+  GameEngine.player.Sprite.anims.play(AnimationName, true);
 }

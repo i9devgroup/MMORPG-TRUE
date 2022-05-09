@@ -1,5 +1,5 @@
 import Loading from '../scenes/loading.js'
-import MainScene from '../scenes/MainScene.js'
+import TylosCity from '../scenes/TylosCity.js'
 import SelecaoPersonagem from '../scenes/SelecaoPersonagem.js'
 
 
@@ -11,7 +11,7 @@ const config = {
     backgroundColor: '#351f1b',
     type: Phaser.AUTO,
     parent: 'game-body',
-    scene: [Loading, SelecaoPersonagem, MainScene],
+    scene: [Loading, SelecaoPersonagem, TylosCity],
     scale: {
       zoom: 1
     },
@@ -26,7 +26,7 @@ const config = {
     physics: {
       default: 'arcade',
       arcade: {
-        debug:false,
+        debug:true,
         gravity: { y: 0 },
       }
     },

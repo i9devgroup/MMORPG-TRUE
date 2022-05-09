@@ -1,17 +1,19 @@
 export default function GetPlayer(GameEngine){
 
-    
+    console.log(GameEngine.CharacterInfo)
     
     var player = {
-        Id:32,
-        Name: 'BlackOut',
+        Id:GameEngine.CharacterInfo.idCharecters,
+        Name: GameEngine.CharacterInfo.NickPlayer,
         Sprite: null,
+        ClassName: GameEngine.CharacterInfo.ClassName,
+        ClassId: GameEngine.CharacterInfo.ClassId,
         Container:null,
-        NameSprite: 'player-4',
-        Level: '25',
-        Exp: '200',
-        Cla: 'GodAngel',
-        Gold_inventario:'500',
+        NameSprite: GameEngine.CharacterInfo.NameSkin,
+        Level: GameEngine.CharacterInfo.LevelPlayer,
+        Exp: GameEngine.CharacterInfo.Exp,
+        Cla: GameEngine.CharacterInfo.ClaPlayer,
+        Gold_inventario:GameEngine.CharacterInfo.Gold,
         Status:{
             killer:0,
             speed:2,
@@ -21,11 +23,11 @@ export default function GetPlayer(GameEngine){
             interval_stamina:null
         },
         Map:{
-            x:150,
-            y:150
+            x:GameEngine.CharacterInfo.MapX,
+            y:GameEngine.CharacterInfo.MapY
         }
     }
-
+    
     GameEngine.player = player;
 
 }

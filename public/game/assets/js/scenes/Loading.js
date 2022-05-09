@@ -1,6 +1,8 @@
 if(!localStorage.getItem('Account')){
     window.location.href = "/login";
 }
+
+
 var channel = geckos({ port: 6363 })
 
 
@@ -20,7 +22,12 @@ export default class Loading extends Phaser.Scene {
          this.load.spritesheet('chara1.png', 'assets/tiles/characters/chara1.png', {
             frameWidth: 26,
             frameHeight: 36,
-            }); 
+        }); 
+
+        this.load.spritesheet('collection2.png', 'assets/tiles/characters/collection2.png', {
+            frameWidth: 26,
+            frameHeight: 36,
+        }); 
 
         // this.load.path = 'assets/player/';
         // this.load.multiatlas('megaset', 'AtlasCharacters.json');
@@ -67,5 +74,6 @@ export default class Loading extends Phaser.Scene {
 
 
 }
+
 
 }

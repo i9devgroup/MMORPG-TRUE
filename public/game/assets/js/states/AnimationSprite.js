@@ -20,7 +20,7 @@ export default function AnimationSprite(GameEngine, Sprite){
         });
 
     })
-    GameEngine.channel.emit('AnimationPersonagens', 'dsa')
+    GameEngine.channel.emit('AnimationPersonagens')
    
     
 
