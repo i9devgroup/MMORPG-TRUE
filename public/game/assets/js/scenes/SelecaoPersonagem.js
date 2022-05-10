@@ -39,7 +39,7 @@ export default class MainScene extends Phaser.Scene {
 
       
     
-      this.scale.on('resize', resize, this);
+      // this.scale.on('resize', resize, this);
 
       function resize (gameSize, baseSize, displaySize, resolution)
       {

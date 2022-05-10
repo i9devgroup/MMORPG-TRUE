@@ -16,6 +16,8 @@ export default class MainScene extends Phaser.Scene {
 
     preload(){
 
+
+
       //DESERT
       // this.load.image('tiles_desert', 'assets/maps/desert.png');
       // this.load.tilemapTiledJSON('desert', 'assets/maps/desert.json');
@@ -43,6 +45,8 @@ export default class MainScene extends Phaser.Scene {
     create(){
     var GameEngine = this;
     this.finder = new EasyStar.js();
+
+    
 
     this.borderPadding = 10
     this.HUDheight = 32
@@ -98,6 +102,41 @@ export default class MainScene extends Phaser.Scene {
     GetPlayer(this)
     Player(this)
     loadMaps(this)
+
+    var graphics = this.add.graphics();
+
+   
+    var curve = new Phaser.Curves.Line(new Phaser.Math.Vector2(200, 300), new Phaser.Math.Vector2(400, 500));
+    graphics.clear();
+    graphics.lineStyle(2, 0xffffff, 1).setDepth(99);
+    
+    
+    
+  
+    
+    this.input.on('pointermove', function (pointer) {
+     
+      var distance = Phaser.Math.Distance.Between(pointer.worldX, pointer.worldY, GameEngine.player.Container.x, GameEngine.player.Container.y);
+      
+
+      if(distance < 300){
+        graphics.clear()
+        graphics.lineStyle(2, 0xffffff, 1).setDepth(99);
+        curve.p0.x = pointer.worldX;
+        curve.p0.y = pointer.worldY;
+
+        curve.p1.x = GameEngine.player.Container.x
+        curve.p1.y = GameEngine.player.Container.y
+        
+        curve.draw(graphics).setDepth(99);
+        
+      }else{
+        graphics.clear()
+        
+      }
+      
+      // this.physics.moveToObject(this.player, pointer, 240);
+    }, this);
     
     
     
@@ -146,31 +185,35 @@ function loadMaps(game) {
     game.map = game.add.tilemap('sandvillagejson');
     var tiles = game.map.addTilesetImage("tilesheet", "sandvillage");
 
-    // game.map.gameLayers = [];
-    // game.map.gameLayers[0] = game.map.createLayer('highlayer0', tiles, 0, 0).setDepth(15);
-    // game.map.gameLayers[1] = game.map.createLayer('layer3', tiles, 0, 0).setDepth(14);
-    // game.map.gameLayers[2] = game.map.createLayer('layer2', tiles, 0, 0).setDepth(13);
-    // game.map.gameLayers[3] = game.map.createLayer('layer1', tiles, 0, 0).setDepth(12);
-    // game.map.gameLayers[4] = game.map.createLayer('layer0', tiles, 0, 0).setDepth(11);
 
-  game.map.gameLayers = [];
-  for(var i = 0; i < game.map.layers.length; i++) {
-    var depth = 10+i
+    game.map.createLayer('highlayer0', tiles, 0, 0).setDepth(20);
+    game.map.createLayer('layer3', tiles, 0, 0).setDepth(19);
+    game.map.createLayer('layer2', tiles, 0, 0).setDepth(18);
+    game.map.createLayer('layer1', tiles, 0, 0).setDepth(17);
+    game.map.createLayer('layer0', tiles, 0, 0).setDepth(16);
+  var colisao = game.map.createLayer('colisao', tiles, 0, 0)
+  .setVisible(false)
+  .setDepth(1);
+
+  colisao.setCollisionByExclusion([-1]);
+  game.physics.add.collider(game.player.Container, colisao);
+
+  // colisao.setCollisionByProperty({ collides: true });
+
+  // game.physics.add.collider(game.player.Container, colisao);
+
+
+  // game.map.gameLayers = [];
+  // for(var i = 0; i < game.map.layers.length; i++) {
+  //   var depth = 10+i
   
-    if(game.map.layers[i].name == 'highlayer0'){
-      game.map.gameLayers[4] = game.map.createLayer(game.map.layers[i].name, tiles, 0, 0).setDepth(15);
-    }else if(game.map.layers[i].name == 'layer3'){
-      game.map.gameLayers[3] = game.map.createLayer(game.map.layers[i].name, tiles, 0, 0).setDepth(14);
-    }else if(game.map.layers[i].name == 'layer2'){
-      game.map.gameLayers[2] = game.map.createLayer(game.map.layers[i].name, tiles, 0, 0).setDepth(13);
-    }else if(game.map.layers[i].name == 'layer1'){
-      game.map.gameLayers[1] = game.map.createLayer(game.map.layers[i].name, tiles, 0, 0).setDepth(12);
-    }else if(game.map.layers[i].name == 'layer0'){
-      game.map.gameLayers[40] = game.map.createLayer(game.map.layers[i].name, tiles, 0, 0).setDepth(11);
-    }
+  //   if(game.map.layers[i].name !== 'colisao'){
+  //     game.map.gameLayers[i] = game.map.createLayer(game.map.layers[i].name, tiles, 0, 0).setDepth(depth);
+  //   }
       
+  
     
-  }
+  // }
 
 
   var startpoint = game.map.findObject("entities", (obj) => obj.id === 563);
@@ -202,7 +245,9 @@ function loadMaps(game) {
   //   }
   //   game.finder.setGrid(grid);
 
-  console.log(game.map, game.map.width)
+
+
+game.cameras.main.setBounds(0, 0, game.map.widthInPixels, game.map.heightInPixels);
 
   game.map.tileset = {
     gid: 1,
@@ -217,37 +262,37 @@ function loadMaps(game) {
 
 
   //   game.wallGrp = game.add.group();
-    game.map.layer.data.forEach( i =>{
+  //   game.map.layer.data.forEach( i =>{
 
    
-      i.forEach(j =>{
+  //     i.forEach(j =>{
       
-          if(j.index !== -1)
-          {
+  //         if(j.index !== -1)
+  //         {
          
-              var tileProperties = game.map.tileset.tileProperties[j.index - game.map.tileset.gid];
+  //             var tileProperties = game.map.tileset.tileProperties[j.index - game.map.tileset.gid];
        
-              if(tileProperties.hasOwnProperty('c')){
+  //             if(tileProperties.hasOwnProperty('c')){
               
-                var wall = game.physics.add.sprite(j.x * 32, j.y * 32, null, null).setOrigin(0, 0).setVisible(false);
-                var props = game.map.tileset.texCoordinates[j.index];
+  //               var wall = game.physics.add.sprite(j.x * 32, j.y * 32, null, null).setOrigin(0, 0).setVisible(false);
+  //               var props = game.map.tileset.texCoordinates[j.index];
           
 
         
-                wall.body.immovable = true;
-                wall.body.setBounce(0,0).setCollideWorldBounds(true);
+  //               wall.body.immovable = true;
+  //               wall.body.setBounce(0,0).setCollideWorldBounds(true);
                 
-                  game.physics.add.collider(game.player.Container, wall);
+  //                 game.physics.add.collider(game.player.Container, wall);
                   
               
-              }
-              // wall.body.setOffset(props.x + 16, props.y + 16);
-              // wall.body.width = props.w;
-              // wall.body.height = props.h;
-              // game.wallGrp.add(wall);
-          }
-      });
-  });
+  //             }
+  //             // wall.body.setOffset(props.x + 16, props.y + 16);
+  //             // wall.body.width = props.w;
+  //             // wall.body.height = props.h;
+  //             // game.wallGrp.add(wall);
+  //         }
+  //     });
+  // });
 
 
 

@@ -22,10 +22,10 @@ GameEngine.player.Container.body.setBounce(0,0).setCollideWorldBounds(true);
 
 // GameEngine.world.setBounds(0,0,Game.map.widthInPixels,Game.map.heightInPixels);
 
-console.log(GameEngine)
 
 
-GameEngine.player.Container.add(GameEngine.player.Sprite).setDepth(14);
+
+GameEngine.player.Container.add(GameEngine.player.Sprite)
 
 
 
@@ -88,7 +88,7 @@ var label = GameEngine.add.text(0,-38,GameEngine.player.Name,{
 
 
 
-  GameEngine.player.Container.add(label)
+  GameEngine.player.Container.add(label).setDepth(20);
   var AnimationName = GameEngine.player.NameSprite+'_down';
   GameEngine.player.Sprite.anims.play(AnimationName, true);
 }
