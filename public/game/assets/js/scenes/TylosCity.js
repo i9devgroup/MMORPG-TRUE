@@ -164,9 +164,16 @@ function loadMaps(game) {
             if(tileProperties){
               if(tileProperties.tilemapLayer){
                 var saida2 = tileProperties.tilemapLayer.gidMap[1]
-                console.log(saida2.hasOwnProperty)
-                 if(saida2.hasOwnProperty('c')){
-                  console.log(tileProperties)
+                
+                 if(saida2.tileProperties){
+
+                  var teste4 = saida2.tileProperties
+
+                  
+                  //  if(teste4){
+
+                  //  }
+                  console.log(teste4)
                  }
             
                 
