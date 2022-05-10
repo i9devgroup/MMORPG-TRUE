@@ -27,15 +27,35 @@ export default class MainScene extends Phaser.Scene {
       //SAND VILLAGE
       // game.load.tilemap('map', 'assets/maps/minimap_client.json', null, Phaser.Tilemap.TILED_JSON);
       // game.load.spritesheet('tileset', 'assets/tilesets/tilesheet.png',32,32);
+
+      //this.load.atlasJSONHash('atlas4', 'assets/tiles/animations/atlas4.png', 'assets/tiles/animations/atlas4.json'); // Atlas of monsters
       this.load.image('sandvillage', 'assets/tiles/map/SandVillage/sandvillage.png');
   
       this.load.tilemapTiledJSON('sandvillagejson', 'assets/tiles/map/SandVillage/sandvillage.json');
+
+
+      this.load.atlas('atlas1', 'assets/tiles/HUB/atlas1.png', 'assets/tiles/HUB/atlas1.json'); // PNJ, HUD, marker, achievements ...
+      this.load.atlas('atlas3', 'assets/tiles/HUB/atlas3.png', 'assets/tiles/HUB/atlas3.json'); // Items, weapons, armors
+      // game.load.json('db', 'assets/json/db.json');
 
     }
 
     create(){
     var GameEngine = this;
     this.finder = new EasyStar.js();
+
+    this.borderPadding = 10
+    this.HUDheight = 32
+    this.barY = 0
+
+  
+    this.HUD = this.add.group(); // Group containing all objects involved in the HUD
+    var border = this.add.sprite(0, 0, 'atlas1','border')
+    .setScrollFactor(0)
+    .setDisplaySize(window.innerWidth,window.innerHeight)
+    .setOrigin(0)
+    this.HUD.add(border); // Adds the gray border of the game
+
 
     GameEngine.cursors = GameEngine.input.keyboard.createCursorKeys()
     GameEngine.keys = GameEngine.input.keyboard.addKeys("W,A,S,D,I,SHIFT");
@@ -211,7 +231,7 @@ function loadMaps(game) {
               
                 var wall = game.physics.add.sprite(j.x * 32, j.y * 32, null, null).setOrigin(0, 0).setVisible(false);
                 var props = game.map.tileset.texCoordinates[j.index];
-                console.log(props)
+          
 
         
                 wall.body.immovable = true;
