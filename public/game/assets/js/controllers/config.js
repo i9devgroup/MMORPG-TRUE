@@ -28,6 +28,12 @@ const config = {
       arcade: {
         debug:true,
         gravity: { y: 0 },
+        debugShowBody: true,
+        debugShowStaticBody: true,
+        debugShowVelocity: true,
+        debugBodyColor: 0xff00ff,
+        debugStaticBodyColor: 0x0000ff,
+        debugVelocityColor: 0x00ff00,
       }
     },
     callbacks: {

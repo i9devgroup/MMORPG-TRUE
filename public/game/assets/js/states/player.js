@@ -17,15 +17,22 @@ GameEngine.player.Sprite = GameEngine.add.sprite(1, -8,player.nameSprite).setSca
 
 GameEngine.physics.world.enable([ GameEngine.player.Container]);
 
-GameEngine.player.Container.body.setBounce(1, 1).setCollideWorldBounds(true);
+GameEngine.player.Container.body.setBounce(0,0).setCollideWorldBounds(true);
+// GameEngine.player.Container.body.setBounce(0,0).setCollideWorldBounds(true);
+
+// GameEngine.world.setBounds(0,0,Game.map.widthInPixels,Game.map.heightInPixels);
+
+console.log(GameEngine)
 
 
-GameEngine.player.Container.add(GameEngine.player.Sprite).setDepth(10);
+GameEngine.player.Container.add(GameEngine.player.Sprite).setDepth(11);
+
 
 
 
 GameEngine.cameras.main.startFollow(GameEngine.player.Container, true);
 GameEngine.cameras.main.setFollowOffset(-GameEngine.player.Container.width, -GameEngine.player.Container.height);
+
 var color;
 
 if(GameEngine.player.Status.killer == 0){
