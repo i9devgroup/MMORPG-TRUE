@@ -159,10 +159,19 @@ function loadMaps(game) {
           var collide = false;
           for (var l = 0; l < 1; l++) {
 
-            var tileProperties = game.map.getLayer(x, y,game.map.gameLayers[l])
-
+            var tileProperties = game.map.getLayer(x, y,game.map.gameLayers[l]);
+            // .tilemapLayer.gidMap
             if(tileProperties){
-              console.log(tileProperties)
+              if(tileProperties.tilemapLayer){
+                var saida2 = tileProperties.tilemapLayer.gidMap[1]
+                console.log(saida2.hasOwnProperty)
+                 if(saida2.hasOwnProperty('c')){
+                  console.log(tileProperties)
+                 }
+            
+                
+              }
+              
             
             //   console.log(tileProperties)
             //  if(tileProperties.hasOwnProperty('c')){
