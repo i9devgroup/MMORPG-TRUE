@@ -35,6 +35,7 @@ export default class MainScene extends Phaser.Scene {
 
     create(){
     var GameEngine = this;
+    this.finder = new EasyStar.js();
 
     GameEngine.cursors = GameEngine.input.keyboard.createCursorKeys()
     GameEngine.keys = GameEngine.input.keyboard.addKeys("W,A,S,D,I,SHIFT");
@@ -57,7 +58,7 @@ export default class MainScene extends Phaser.Scene {
     }
     })
     .setOrigin(0.5)
-    .setDepth(12).setScrollFactor(0)
+    .setDepth(99).setScrollFactor(0)
     .setAlpha(0);
 
     this.tweens.add({
@@ -74,10 +75,10 @@ export default class MainScene extends Phaser.Scene {
 
     }, 7000);
 
-    
-    loadMaps(this)
     GetPlayer(this)
     Player(this)
+    loadMaps(this)
+    
     
     
   
@@ -125,109 +126,114 @@ function loadMaps(game) {
     game.map = game.add.tilemap('sandvillagejson');
     var tiles = game.map.addTilesetImage("tilesheet", "sandvillage");
 
-  // var sand1 = game.map.createLayer('layer0', tiles, 0, 0).setDepth(2);
-  // var sand2 = game.map.createLayer('layer1', tiles, 0, 0).setDepth(3);
-  // var sand3 = game.map.createLayer('layer2', tiles, 0, 0).setDepth(4);
-  // var sand4 = game.map.createLayer('layer3', tiles, 0, 0).setDepth(5);
-  // var sand5 = game.map.createLayer('highlayer0', tiles, 0, 0).setDepth(6);
+    // game.map.gameLayers = [];
+    // game.map.gameLayers[0] = game.map.createLayer('highlayer0', tiles, 0, 0).setDepth(15);
+    // game.map.gameLayers[1] = game.map.createLayer('layer3', tiles, 0, 0).setDepth(14);
+    // game.map.gameLayers[2] = game.map.createLayer('layer2', tiles, 0, 0).setDepth(13);
+    // game.map.gameLayers[3] = game.map.createLayer('layer1', tiles, 0, 0).setDepth(12);
+    // game.map.gameLayers[4] = game.map.createLayer('layer0', tiles, 0, 0).setDepth(11);
 
   game.map.gameLayers = [];
   for(var i = 0; i < game.map.layers.length; i++) {
-      var group = (i <= game.nbGroundLayers-1 ? game.groundMapLayers : game.highMapLayers);
-      game.map.gameLayers[i] = game.map.createLayer(game.map.layers[i].name, tiles, 0, 0);
-     
+    var depth = 10+i
+  
+    if(game.map.layers[i].name == 'highlayer0'){
+      game.map.gameLayers[4] = game.map.createLayer(game.map.layers[i].name, tiles, 0, 0).setDepth(15);
+    }else if(game.map.layers[i].name == 'layer3'){
+      game.map.gameLayers[3] = game.map.createLayer(game.map.layers[i].name, tiles, 0, 0).setDepth(14);
+    }else if(game.map.layers[i].name == 'layer2'){
+      game.map.gameLayers[2] = game.map.createLayer(game.map.layers[i].name, tiles, 0, 0).setDepth(13);
+    }else if(game.map.layers[i].name == 'layer1'){
+      game.map.gameLayers[1] = game.map.createLayer(game.map.layers[i].name, tiles, 0, 0).setDepth(12);
+    }else if(game.map.layers[i].name == 'layer0'){
+      game.map.gameLayers[40] = game.map.createLayer(game.map.layers[i].name, tiles, 0, 0).setDepth(11);
+    }
+      
+    
   }
 
-    // for(var i = 0; i < game.map.layers.length; i++) {
 
-    //    game.map.createLayer(game.map.layers[i].name,tiles,0,0);
-    // }
+  var startpoint = game.map.findObject("entities", (obj) => obj.id === 563);
 
+  game.player.Container.x = startpoint.x
+  game.player.Container.y = startpoint.y
 
   game.physics.world.setBounds( 0, 0, game.map.widthInPixels, game.map.heightInPixels);
 
-
-  // game.map.getLayer().properties.forEach((p) => { console.log(p); });
-
-
-  // game.map.gameLayers.length
+  game.getTileID = function(x,y){
+    var tile = game.map.getTileAt(x, y);
+    if(tile){
+      return tile.index
+    }
+    
   
-  game.collisionArray = [];
-  for(var y = 0; y < game.map.height; y++){
-      var col = [];
-      for (var x = 0; x < game.map.width; x++) {
-          var collide = false;
-          for (var l = 0; l < 1; l++) {
+};
 
-            var tileProperties = game.map.getLayer(x, y,game.map.gameLayers[l]);
-            // .tilemapLayer.gidMap
-            if(tileProperties){
-              if(tileProperties.tilemapLayer){
-                var saida2 = tileProperties.tilemapLayer.gidMap[1]
-                
-                 if(saida2.tileProperties){
 
-                  var teste4 = saida2.tileProperties
+  // var grid = [];
+  //   for(var y = 0; y < game.map.height; y++){
+  //       var col = [];
+  //       for(var x = 0; x < game.map.width; x++){
+  //           // In each cell we store the ID of the tile, which corresponds
+  //           // to its index in the tileset of the map ("ID" field in Tiled)
+  //           col.push(game.getTileID(x,y));
+  //       }
+  //       grid.push(col);
+  //   }
+  //   game.finder.setGrid(grid);
 
-                  
-                  //  if(teste4){
+  console.log(game.map, game.map.width)
 
-                  //  }
-                  console.log(teste4)
-                 }
-            
-                
-              }
+  game.map.tileset = {
+    gid: 1,
+    tileProperties: game.map.tilesets[0].tileProperties,
+    texCoordinates: game.map.tilesets[0].texCoordinates
+  };
+
+    // console.log(game.collisionArray)
+
+    // game.finder.setGrid(game.collisionArray);
+    // game.finder.setAcceptableTiles([0]);
+
+
+  //   game.wallGrp = game.add.group();
+    game.map.layer.data.forEach( i =>{
+
+   
+      i.forEach(j =>{
+      
+          if(j.index !== -1)
+          {
+         
+              var tileProperties = game.map.tileset.tileProperties[j.index - game.map.tileset.gid];
+       
+              if(tileProperties.hasOwnProperty('c')){
               
-            
-            //   console.log(tileProperties)
-            //  if(tileProperties.hasOwnProperty('c')){
-            //     console.log(tileProperties)
-            //  }
-            }
-            
-            // if (tileProperties.hasOwnProperty('c')) {
-            //   console.log('colisao')
-            //               // collide = true;
-            //               break;
-            //           }
-              // var tile = game.map.getTile(x, y, game.map.gameLayers[l]);
-              // if (tile) {
-              //     // The original BrowserQuest Tiled file doesn't use a collision layer; rather, properties are added to the
-              //     // tileset to indicate which tiles causes collisions or not. Which is why we have to check in the tileProperties
-              //     // if a given tile has the property "c" or not (= collision)
-              //     var tileProperties = game.map.tileset.tileProperties[tile.index - game.map.tileset.gid];
-              //     if (tileProperties) {
-              //         if (tileProperties.hasOwnProperty('c')) {
-              //             collide = true;
-              //             break;
-              //         }
-              //     }
-              // }
+                var wall = game.physics.add.sprite(j.x * 32, j.y * 32, null, null).setOrigin(0, 0).setVisible(false);
+                var props = game.map.tileset.texCoordinates[j.index];
+                console.log(props)
+
+        
+                wall.body.immovable = true;
+                wall.body.setBounce(0,0).setCollideWorldBounds(true);
+                
+                  game.physics.add.collider(game.player.Container, wall);
+                  
+              
+              }
+              // wall.body.setOffset(props.x + 16, props.y + 16);
+              // wall.body.width = props.w;
+              // wall.body.height = props.h;
+              // game.wallGrp.add(wall);
           }
-          col.push(+collide); // "+" to convert boolean to int
-      }
-      game.collisionArray.push(col);
-  }
+      });
+  });
 
 
-    // for(var i = 0; i < game.map.layers.length; i++) {
-
-    //    game.map.createLayer(game.map.layers[i].name,tiles,0,0);
-    // }
-
-    // sand1.setCollisionByExclusion([-1]);
-    // sand2.setCollisionByExclusion([-1]);
-    // sand3.setCollisionByExclusion([-1]);
-    // sand4.setCollisionByExclusion([-1]);
-    // sand5.setCollisionByExclusion([-1]);
-    // game.map.setCollisionBetween(1, 999, true, 'collisionLayer');
-
- 
 
 
-  
-    // game.world.setBounds(1,1,game.map.widthInPixels,game.map.heightInPixels);
+
+
 
   // DESERT
   // game.map = game.add.tilemap('desert');

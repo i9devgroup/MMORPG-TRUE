@@ -16,10 +16,10 @@ export default function GetPlayer(GameEngine){
         Gold_inventario:GameEngine.CharacterInfo.Gold,
         Status:{
             killer:0,
-            speed:2,
-            stamina:500,
-            max_stamina:500,
-            recharge_stamina:500,
+            speed:5,
+            stamina:5000,
+            max_stamina:5000,
+            recharge_stamina:5000,
             interval_stamina:null
         },
         Map:{

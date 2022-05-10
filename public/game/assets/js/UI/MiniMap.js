@@ -28,7 +28,7 @@ export default function MiniMap(GameEngine){
     GameEngine.MiniMap.borda.fillStyle(0x002244, 1);
     GameEngine.MiniMap.borda.setDepth(12);
     GameEngine.MiniMap.borda.strokeRoundedRect(rigthMapX, 10, 150, 150, 50);
-    GameEngine.MiniMap.borda.setScrollFactor(0).setDepth(11);
+    GameEngine.MiniMap.borda.setScrollFactor(0).setDepth(99);
   
     GameEngine.MiniMap.mascara = GameEngine.add.graphics();
     GameEngine.MiniMap.mascara.fillStyle(0xffff00, 1);
@@ -37,7 +37,7 @@ export default function MiniMap(GameEngine){
     GameEngine.MiniMap.mascara.visible = false
   
     // FUNCIOANNDO 
-    GameEngine.MiniMap.map = GameEngine.cameras.add(rigthMapX, 10, 190, 190, 50).setZoom(0.4).setName('mini').setRoundPixels(true);
+    GameEngine.MiniMap.map = GameEngine.cameras.add(rigthMapX, 10, 190, 190, 50).setZoom(0.2).setName('mini').setRoundPixels(true);
     GameEngine.MiniMap.map.setBackgroundColor(0x002244);
     GameEngine.MiniMap.map.ignore(GameEngine.MiniMap['map']);
     

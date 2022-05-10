@@ -25,7 +25,7 @@ GameEngine.player.Container.body.setBounce(0,0).setCollideWorldBounds(true);
 console.log(GameEngine)
 
 
-GameEngine.player.Container.add(GameEngine.player.Sprite).setDepth(11);
+GameEngine.player.Container.add(GameEngine.player.Sprite).setDepth(14);
 
 
 
